@@ -22,7 +22,7 @@ framework-agnostic and usable in any Vue-based application
 - Composition API
 - <script setup>
 - TypeScript
-- Tailwind CSS
+- Tailwind CSS v4
 - Storybook for Vue 3
 
 ---
@@ -53,10 +53,22 @@ framework-agnostic and usable in any Vue-based application
 - Use Vue Composition API only
 - No Options API
 - No external UI libraries
-- Use Tailwind utility classes only
+- Use Tailwind CSS v4 utility classes only
 - Do not hardcode colors, spacing, or typography
-- Use Tailwind design tokens defined in `/tokens`
+- Design tokens are defined via `@theme` in `/styles/main.css`
 - Avoid global CSS dependencies
+
+---
+
+## Tailwind CSS v4
+
+- This project uses **Tailwind CSS v4** (not v3)
+- There is **no `tailwind.config.js`** — all configuration lives in CSS
+- The Vite plugin `@tailwindcss/vite` is used instead of PostCSS
+- There is **no `postcss.config.js`**
+- Design tokens are registered via `@theme` blocks in `/styles/main.css`
+- Use `@import "tailwindcss"` instead of `@tailwind` directives
+- Custom colors, spacing, and typography are defined as CSS theme variables
 
 ---
 
@@ -95,13 +107,13 @@ framework-agnostic and usable in any Vue-based application
 
 ## Design Tokens
 
-- All design tokens live in `/tokens`
+- All design tokens are defined in `/styles/main.css` via `@theme`
 - Tokens include:
   - colors
   - spacing
-  - typography
-- Tailwind consumes tokens via theme extension
+  - typography (font families, sizes, weights)
 - Components must reference tokens through Tailwind utilities only
+- Token JS definitions in `/tokens` are kept for reference and type safety
 
 ---
 
