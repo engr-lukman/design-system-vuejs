@@ -60,13 +60,13 @@ const resizeClasses: Record<TextareaResize, string> = {
 const textareaClasses = computed(() => [
   'block w-full rounded-lg border transition-colors duration-150',
   'focus:outline-none focus:ring-2 focus:ring-offset-0',
-  'disabled:bg-neutral-100 disabled:cursor-not-allowed',
-  'placeholder:text-neutral-400',
+  'disabled:bg-gray-100 disabled:cursor-not-allowed',
+  'placeholder:text-gray-400',
   sizeClasses[props.size],
   resizeClasses[props.resize],
   props.error
-    ? 'border-danger-500 focus:border-danger-500 focus:ring-danger-500/20'
-    : 'border-neutral-300 focus:border-primary-500 focus:ring-primary-500/20',
+    ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+    : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500/20',
 ])
 
 const charCount = computed(() => props.modelValue.length)
@@ -79,9 +79,17 @@ function onInput(event: Event) {
 
 <template>
   <div class="flex flex-col gap-1.5">
-    <label v-if="label" :for="textareaId" class="text-sm font-medium text-neutral-700">
+    <label
+      v-if="label"
+      :for="textareaId"
+      class="text-sm font-medium text-gray-700"
+    >
       {{ label }}
-      <span v-if="required" class="text-danger-500" aria-hidden="true">*</span>
+      <span
+        v-if="required"
+        class="text-red-500"
+        aria-hidden="true"
+      >*</span>
     </label>
 
     <textarea
@@ -103,10 +111,19 @@ function onInput(event: Event) {
 
     <div class="flex items-center justify-between">
       <div>
-        <p v-if="error" :id="`${textareaId}-error`" class="text-sm text-danger-600" role="alert">
+        <p
+          v-if="error"
+          :id="`${textareaId}-error`"
+          class="text-sm text-red-600"
+          role="alert"
+        >
           {{ error }}
         </p>
-        <p v-else-if="hint" :id="`${textareaId}-hint`" class="text-sm text-neutral-500">
+        <p
+          v-else-if="hint"
+          :id="`${textareaId}-hint`"
+          class="text-sm text-gray-500"
+        >
           {{ hint }}
         </p>
       </div>
@@ -115,7 +132,7 @@ function onInput(event: Event) {
         v-if="showCount"
         :class="[
           'text-xs',
-          maxLength && charCount >= maxLength ? 'text-danger-600' : 'text-neutral-400',
+          maxLength && charCount >= maxLength ? 'text-red-600' : 'text-gray-400',
         ]"
       >
         {{ charCount }}<template v-if="maxLength"> / {{ maxLength }}</template>

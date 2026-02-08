@@ -20,7 +20,7 @@ framework-agnostic and usable in any Vue-based application
 
 - Vue 3
 - Composition API
-- <script setup>
+- `<script setup>`
 - TypeScript
 - Tailwind CSS v4
 - Storybook for Vue 3
@@ -42,8 +42,11 @@ framework-agnostic and usable in any Vue-based application
 - Each component folder contains:
   - `<ComponentName>.vue`
   - `<ComponentName>.stories.ts`
+  - `types.ts` (optional — for exported interfaces/types used by consumers)
 - Use Atomic Design concepts where appropriate
 - Components must be reusable and composable
+- **Never use `export` inside `<script setup>` blocks** — extract shared types,
+  interfaces, and constants to a separate `types.ts` file in the component folder
 
 ---
 
@@ -54,8 +57,8 @@ framework-agnostic and usable in any Vue-based application
 - No Options API
 - No external UI libraries
 - Use Tailwind CSS v4 utility classes only
-- Do not hardcode colors, spacing, or typography
-- Design tokens are defined via `@theme` in `/styles/main.css`
+- Use Tailwind's default color palette (e.g. `blue-*`, `gray-*`, `red-*`, `green-*`, `amber-*`)
+- Do not define custom design tokens or `@theme` overrides
 - Avoid global CSS dependencies
 
 ---
@@ -63,12 +66,13 @@ framework-agnostic and usable in any Vue-based application
 ## Tailwind CSS v4
 
 - This project uses **Tailwind CSS v4** (not v3)
-- There is **no `tailwind.config.js`** — all configuration lives in CSS
+- There is **no `tailwind.config.js`** — configuration is CSS-based
 - The Vite plugin `@tailwindcss/vite` is used instead of PostCSS
 - There is **no `postcss.config.js`**
-- Design tokens are registered via `@theme` blocks in `/styles/main.css`
 - Use `@import "tailwindcss"` instead of `@tailwind` directives
-- Custom colors, spacing, and typography are defined as CSS theme variables
+- Use Tailwind's built-in default colors, spacing, and typography
+- No custom `@theme` blocks — rely entirely on Tailwind defaults
+- The global stylesheet is `/styles/main.css` (imports Tailwind only)
 
 ---
 
@@ -102,18 +106,6 @@ framework-agnostic and usable in any Vue-based application
   - Disabled and error states (if applicable)
 - Use args and argTypes for controls
 - Keep stories minimal and readable
-
----
-
-## Design Tokens
-
-- All design tokens are defined in `/styles/main.css` via `@theme`
-- Tokens include:
-  - colors
-  - spacing
-  - typography (font families, sizes, weights)
-- Components must reference tokens through Tailwind utilities only
-- Token JS definitions in `/tokens` are kept for reference and type safety
 
 ---
 

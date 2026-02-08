@@ -9,8 +9,11 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="rounded-xl border border-neutral-200 bg-white shadow-sm overflow-hidden">
-    <div v-if="$slots.header" class="border-b border-neutral-200 px-6 py-4">
+  <div class="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+    <div
+      v-if="$slots.header"
+      class="border-b border-gray-200 px-6 py-4"
+    >
       <slot name="header" />
     </div>
 
@@ -18,7 +21,10 @@ withDefaults(defineProps<Props>(), {
       <slot />
     </div>
 
-    <div v-if="$slots.footer" class="border-t border-neutral-200 px-6 py-4">
+    <div
+      v-if="$slots.footer"
+      class="border-t border-gray-200 px-6 py-4"
+    >
       <slot name="footer" />
     </div>
   </div>

@@ -39,10 +39,10 @@ const statusSizes: Record<AvatarSize, string> = {
 }
 
 const statusColors: Record<string, string> = {
-  online: 'bg-success-500',
-  offline: 'bg-neutral-400',
-  away: 'bg-warning-500',
-  busy: 'bg-danger-500',
+  online: 'bg-green-500',
+  offline: 'bg-gray-400',
+  away: 'bg-amber-500',
+  busy: 'bg-red-500',
 }
 
 const initials = computed(() => {
@@ -56,7 +56,7 @@ const initials = computed(() => {
 })
 
 const containerClasses = computed(() => [
-  'relative inline-flex items-center justify-center overflow-hidden bg-neutral-200 text-neutral-600 font-medium shrink-0',
+  'relative inline-flex items-center justify-center overflow-hidden bg-gray-200 text-gray-600 font-medium shrink-0',
   sizeClasses[props.size],
   props.shape === 'circle' ? 'rounded-full' : 'rounded-lg',
 ])
@@ -70,11 +70,14 @@ const containerClasses = computed(() => [
       :alt="alt || name"
       class="h-full w-full object-cover"
       @error="($event.target as HTMLImageElement).style.display = 'none'"
-    />
-    <span v-else-if="initials" aria-hidden="true">{{ initials }}</span>
+    >
+    <span
+      v-else-if="initials"
+      aria-hidden="true"
+    >{{ initials }}</span>
     <svg
       v-else
-      class="h-[60%] w-[60%] text-neutral-400"
+      class="h-[60%] w-[60%] text-gray-400"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"

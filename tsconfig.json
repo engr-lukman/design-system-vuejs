@@ -20,7 +20,6 @@
   "include": [
     "components/**/*.ts",
     "components/**/*.vue",
-    "tokens/**/*.ts",
     "dev/**/*.ts",
     "dev/**/*.vue",
     "env.d.ts",

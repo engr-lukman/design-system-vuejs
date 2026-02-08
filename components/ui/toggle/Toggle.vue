@@ -43,10 +43,10 @@ const thumbTranslate: Record<ToggleSize, string> = {
 
 const trackClasses = computed(() => [
   'relative inline-flex shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out',
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
   'disabled:opacity-50 disabled:cursor-not-allowed',
   trackSizes[props.size],
-  props.modelValue ? 'bg-primary-600' : 'bg-neutral-300',
+  props.modelValue ? 'bg-blue-600' : 'bg-gray-300',
 ])
 
 const thumbClasses = computed(() => [
@@ -74,14 +74,17 @@ function toggle() {
       :class="trackClasses"
       @click="toggle"
     >
-      <span :class="thumbClasses" aria-hidden="true" />
+      <span
+        :class="thumbClasses"
+        aria-hidden="true"
+      />
     </button>
 
     <label
       v-if="label"
       :for="toggleId"
       :class="[
-        'text-sm text-neutral-700 cursor-pointer select-none',
+        'text-sm text-gray-700 cursor-pointer select-none',
         disabled && 'opacity-50 cursor-not-allowed',
       ]"
     >

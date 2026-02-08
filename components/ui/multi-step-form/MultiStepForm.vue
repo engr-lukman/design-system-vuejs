@@ -75,7 +75,7 @@ defineExpose({ next, prev, goTo })
             v-if="index > 0"
             :class="[
               'absolute top-4 right-1/2 -left-full h-0.5 transition-colors duration-200',
-              index <= currentStep ? 'bg-primary-600' : 'bg-neutral-200',
+              index <= currentStep ? 'bg-blue-600' : 'bg-gray-200',
             ]"
             aria-hidden="true"
           />
@@ -95,10 +95,10 @@ defineExpose({ next, prev, goTo })
               :class="[
                 'flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-200',
                 index < currentStep
-                  ? 'bg-primary-600 text-white'
+                  ? 'bg-blue-600 text-white'
                   : index === currentStep
-                    ? 'border-primary-600 text-primary-600 border-2 bg-white'
-                    : 'border-2 border-neutral-300 bg-white text-neutral-500',
+                    ? 'border-blue-600 text-blue-600 border-2 bg-white'
+                    : 'border-2 border-gray-300 bg-white text-gray-500',
               ]"
             >
               <!-- Check icon for completed steps -->
@@ -124,12 +124,15 @@ defineExpose({ next, prev, goTo })
               <span
                 :class="[
                   'text-xs font-medium whitespace-nowrap',
-                  index <= currentStep ? 'text-primary-600' : 'text-neutral-500',
+                  index <= currentStep ? 'text-blue-600' : 'text-gray-500',
                 ]"
               >
                 {{ step.title }}
               </span>
-              <span v-if="step.description" class="hidden text-xs text-neutral-400 sm:block">
+              <span
+                v-if="step.description"
+                class="hidden text-xs text-gray-400 sm:block"
+              >
                 {{ step.description }}
               </span>
             </span>
@@ -140,9 +143,19 @@ defineExpose({ next, prev, goTo })
 
     <!-- Step Content -->
     <div class="min-h-0">
-      <template v-for="(step, index) in steps" :key="index">
-        <div v-show="index === currentStep" role="tabpanel">
-          <slot :name="`step-${index}`" :step="step" :index="index" />
+      <template
+        v-for="(step, index) in steps"
+        :key="index"
+      >
+        <div
+          v-show="index === currentStep"
+          role="tabpanel"
+        >
+          <slot
+            :name="`step-${index}`"
+            :step="step"
+            :index="index"
+          />
         </div>
       </template>
     </div>
@@ -150,7 +163,7 @@ defineExpose({ next, prev, goTo })
     <!-- Navigation -->
     <div
       v-if="$slots.actions"
-      class="flex items-center justify-between border-t border-neutral-200 pt-6"
+      class="flex items-center justify-between border-t border-gray-200 pt-6"
     >
       <slot
         name="actions"
@@ -162,13 +175,16 @@ defineExpose({ next, prev, goTo })
         :go-to="goTo"
       />
     </div>
-    <div v-else class="flex items-center justify-between border-t border-neutral-200 pt-6">
+    <div
+      v-else
+      class="flex items-center justify-between border-t border-gray-200 pt-6"
+    >
       <button
         type="button"
         :disabled="isFirstStep"
         :class="[
-          'rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition-colors',
-          isFirstStep ? 'cursor-not-allowed opacity-50' : 'hover:bg-neutral-50',
+          'rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors',
+          isFirstStep ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-50',
         ]"
         @click="prev"
       >
@@ -176,7 +192,7 @@ defineExpose({ next, prev, goTo })
       </button>
       <button
         type="button"
-        class="bg-primary-600 hover:bg-primary-700 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
+        class="bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
         @click="next"
       >
         {{ isLastStep ? 'Complete' : 'Next' }}

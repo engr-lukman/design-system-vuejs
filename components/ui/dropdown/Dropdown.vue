@@ -69,12 +69,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="triggerRef" class="relative inline-block">
+  <div
+    ref="triggerRef"
+    class="relative inline-block"
+  >
     <div @click="toggle">
       <slot name="trigger">
         <button
           type="button"
-          class="focus-visible:ring-primary-500 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50 focus-visible:ring-2 focus-visible:outline-none"
+          class="focus-visible:ring-blue-500 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 focus-visible:ring-2 focus-visible:outline-none"
         >
           Actions
           <svg
@@ -105,14 +108,21 @@ onUnmounted(() => {
       <div
         v-if="open"
         :class="[
-          'absolute z-50 mt-1 rounded-lg border border-neutral-200 bg-white py-1 shadow-lg',
+          'absolute z-50 mt-1 rounded-lg border border-gray-200 bg-white py-1 shadow-lg',
           widthClasses[width],
           align === 'right' ? 'right-0' : 'left-0',
         ]"
         role="menu"
       >
-        <template v-for="item in items" :key="item.key">
-          <div v-if="item.separator" class="my-1 border-t border-neutral-200" role="separator" />
+        <template
+          v-for="item in items"
+          :key="item.key"
+        >
+          <div
+            v-if="item.separator"
+            class="my-1 border-t border-gray-200"
+            role="separator"
+          />
           <button
             v-else
             type="button"
@@ -121,10 +131,10 @@ onUnmounted(() => {
             :class="[
               'flex w-full items-center px-3 py-2 text-left text-sm transition-colors',
               item.disabled
-                ? 'cursor-not-allowed text-neutral-400'
+                ? 'cursor-not-allowed text-gray-400'
                 : item.danger
-                  ? 'text-danger-600 hover:bg-danger-50'
-                  : 'text-neutral-700 hover:bg-neutral-100',
+                  ? 'text-red-600 hover:bg-red-50'
+                  : 'text-gray-700 hover:bg-gray-100',
             ]"
             @click="selectItem(item)"
           >

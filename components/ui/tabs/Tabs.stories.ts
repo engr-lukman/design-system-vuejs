@@ -30,9 +30,9 @@ export const Default: Story = {
     },
     template: `
       <Tabs :tabs="tabs" v-model="activeTab">
-        <template #overview><p class="text-neutral-600">Overview content here.</p></template>
-        <template #features><p class="text-neutral-600">Features content here.</p></template>
-        <template #pricing><p class="text-neutral-600">Pricing content here.</p></template>
+        <template #overview><p class="text-gray-600">Overview content here.</p></template>
+        <template #features><p class="text-gray-600">Features content here.</p></template>
+        <template #pricing><p class="text-gray-600">Pricing content here.</p></template>
       </Tabs>
     `,
   }),
@@ -47,9 +47,9 @@ export const Pills: Story = {
     },
     template: `
       <Tabs :tabs="tabs" v-model="activeTab" variant="pills">
-        <template #overview><p class="text-neutral-600">Overview content.</p></template>
-        <template #features><p class="text-neutral-600">Features content.</p></template>
-        <template #pricing><p class="text-neutral-600">Pricing content.</p></template>
+        <template #overview><p class="text-gray-600">Overview content.</p></template>
+        <template #features><p class="text-gray-600">Features content.</p></template>
+        <template #pricing><p class="text-gray-600">Pricing content.</p></template>
       </Tabs>
     `,
   }),
@@ -64,9 +64,9 @@ export const FullWidth: Story = {
     },
     template: `
       <Tabs :tabs="tabs" v-model="activeTab" full-width>
-        <template #overview><p class="text-neutral-600">Full width tabs.</p></template>
-        <template #features><p class="text-neutral-600">Features.</p></template>
-        <template #pricing><p class="text-neutral-600">Pricing.</p></template>
+        <template #overview><p class="text-gray-600">Full width tabs.</p></template>
+        <template #features><p class="text-gray-600">Features.</p></template>
+        <template #pricing><p class="text-gray-600">Pricing.</p></template>
       </Tabs>
     `,
   }),
@@ -86,9 +86,9 @@ export const WithDisabled: Story = {
     },
     template: `
       <Tabs :tabs="tabs" v-model="activeTab">
-        <template #overview><p class="text-neutral-600">Overview content.</p></template>
-        <template #features><p class="text-neutral-600">Features content.</p></template>
-        <template #pricing><p class="text-neutral-600">Pricing content (disabled).</p></template>
+        <template #overview><p class="text-gray-600">Overview content.</p></template>
+        <template #features><p class="text-gray-600">Features content.</p></template>
+        <template #pricing><p class="text-gray-600">Pricing content (disabled).</p></template>
       </Tabs>
     `,
   }),

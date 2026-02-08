@@ -52,12 +52,12 @@ const positionClasses: Record<TooltipPosition, string> = {
 }
 
 const arrowClasses: Record<TooltipPosition, string> = {
-  top: 'top-full left-1/2 -translate-x-1/2 border-t-neutral-800 border-l-transparent border-r-transparent border-b-transparent',
+  top: 'top-full left-1/2 -translate-x-1/2 border-t-gray-800 border-l-transparent border-r-transparent border-b-transparent',
   bottom:
-    'bottom-full left-1/2 -translate-x-1/2 border-b-neutral-800 border-l-transparent border-r-transparent border-t-transparent',
-  left: 'left-full top-1/2 -translate-y-1/2 border-l-neutral-800 border-t-transparent border-b-transparent border-r-transparent',
+    'bottom-full left-1/2 -translate-x-1/2 border-b-gray-800 border-l-transparent border-r-transparent border-t-transparent',
+  left: 'left-full top-1/2 -translate-y-1/2 border-l-gray-800 border-t-transparent border-b-transparent border-r-transparent',
   right:
-    'right-full top-1/2 -translate-y-1/2 border-r-neutral-800 border-t-transparent border-b-transparent border-l-transparent',
+    'right-full top-1/2 -translate-y-1/2 border-r-gray-800 border-t-transparent border-b-transparent border-l-transparent',
 }
 </script>
 
@@ -84,12 +84,15 @@ const arrowClasses: Record<TooltipPosition, string> = {
         :id="tooltipId"
         role="tooltip"
         :class="[
-          'absolute z-50 rounded-md bg-neutral-800 px-2.5 py-1.5 text-xs whitespace-nowrap text-white shadow-lg',
+          'absolute z-50 rounded-md bg-gray-800 px-2.5 py-1.5 text-xs whitespace-nowrap text-white shadow-lg',
           positionClasses[position],
         ]"
       >
         {{ content }}
-        <span :class="['absolute border-4', arrowClasses[position]]" aria-hidden="true" />
+        <span
+          :class="['absolute border-4', arrowClasses[position]]"
+          aria-hidden="true"
+        />
       </div>
     </Transition>
   </div>

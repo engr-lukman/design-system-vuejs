@@ -25,21 +25,21 @@ defineEmits<{
 }>()
 
 const variantClasses: Record<BadgeVariant, string> = {
-  primary: 'bg-primary-100 text-primary-700',
-  secondary: 'bg-neutral-100 text-neutral-700',
-  success: 'bg-success-100 text-success-700',
-  warning: 'bg-warning-100 text-warning-700',
-  danger: 'bg-danger-100 text-danger-700',
-  info: 'bg-info-100 text-info-700',
+  primary: 'bg-blue-100 text-blue-700',
+  secondary: 'bg-gray-100 text-gray-700',
+  success: 'bg-green-100 text-green-700',
+  warning: 'bg-amber-100 text-amber-700',
+  danger: 'bg-red-100 text-red-700',
+  info: 'bg-blue-100 text-blue-700',
 }
 
 const dotColors: Record<BadgeVariant, string> = {
-  primary: 'bg-primary-500',
-  secondary: 'bg-neutral-500',
-  success: 'bg-success-500',
-  warning: 'bg-warning-500',
-  danger: 'bg-danger-500',
-  info: 'bg-info-500',
+  primary: 'bg-blue-500',
+  secondary: 'bg-gray-500',
+  success: 'bg-green-500',
+  warning: 'bg-amber-500',
+  danger: 'bg-red-500',
+  info: 'bg-blue-500',
 }
 
 const sizeClasses: Record<BadgeSize, string> = {

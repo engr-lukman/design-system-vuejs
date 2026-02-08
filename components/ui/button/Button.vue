@@ -27,12 +27,12 @@ defineEmits<{
 }>()
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-primary-600 text-white hover:bg-primary-700 focus-visible:ring-primary-500',
-  secondary: 'bg-neutral-200 text-neutral-800 hover:bg-neutral-300 focus-visible:ring-neutral-400',
+  primary: 'bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500',
+  secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300 focus-visible:ring-gray-400',
   outline:
-    'border border-primary-600 text-primary-600 hover:bg-primary-50 focus-visible:ring-primary-500',
-  ghost: 'text-neutral-700 hover:bg-neutral-100 focus-visible:ring-neutral-400',
-  danger: 'bg-danger-600 text-white hover:bg-danger-700 focus-visible:ring-danger-500',
+    'border border-blue-600 text-blue-600 hover:bg-blue-50 focus-visible:ring-blue-500',
+  ghost: 'text-gray-700 hover:bg-gray-100 focus-visible:ring-gray-400',
+  danger: 'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500',
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -66,7 +66,14 @@ const classes = computed(() => [
       viewBox="0 0 24 24"
       aria-hidden="true"
     >
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+      <circle
+        class="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        stroke-width="4"
+      />
       <path
         class="opacity-75"
         fill="currentColor"

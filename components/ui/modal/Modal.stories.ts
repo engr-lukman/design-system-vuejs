@@ -34,22 +34,22 @@ export const Default: Story = {
     template: `
       <div>
         <button
-          class="rounded-lg bg-primary-600 px-4 py-2 text-white hover:bg-primary-700"
+          class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
           @click="open = true"
         >
           Open Modal
         </button>
         <Modal v-bind="args" v-model="open">
-          <p class="text-neutral-600">This is the modal body content.</p>
+          <p class="text-gray-600">This is the modal body content.</p>
           <template #footer>
             <button
-              class="rounded-lg border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+              class="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
               @click="open = false"
             >
               Cancel
             </button>
             <button
-              class="rounded-lg bg-primary-600 px-4 py-2 text-sm text-white hover:bg-primary-700"
+              class="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
               @click="open = false"
             >
               Confirm
@@ -76,13 +76,13 @@ export const Small: Story = {
     template: `
       <div>
         <button
-          class="rounded-lg bg-primary-600 px-4 py-2 text-white hover:bg-primary-700"
+          class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
           @click="open = true"
         >
           Open Small Modal
         </button>
         <Modal v-bind="args" v-model="open">
-          <p class="text-neutral-600">Small modal content.</p>
+          <p class="text-gray-600">Small modal content.</p>
         </Modal>
       </div>
     `,
@@ -104,13 +104,13 @@ export const Large: Story = {
     template: `
       <div>
         <button
-          class="rounded-lg bg-primary-600 px-4 py-2 text-white hover:bg-primary-700"
+          class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
           @click="open = true"
         >
           Open Large Modal
         </button>
         <Modal v-bind="args" v-model="open">
-          <p class="text-neutral-600">Large modal with more room for content. You can add forms, tables, or any complex layout here.</p>
+          <p class="text-gray-600">Large modal with more room for content. You can add forms, tables, or any complex layout here.</p>
         </Modal>
       </div>
     `,
@@ -134,16 +134,16 @@ export const NonClosable: Story = {
     template: `
       <div>
         <button
-          class="rounded-lg bg-primary-600 px-4 py-2 text-white hover:bg-primary-700"
+          class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
           @click="open = true"
         >
           Open Non-closable Modal
         </button>
         <Modal v-bind="args" v-model="open">
-          <p class="text-neutral-600">You can only close this modal with the button below.</p>
+          <p class="text-gray-600">You can only close this modal with the button below.</p>
           <template #footer>
             <button
-              class="rounded-lg bg-primary-600 px-4 py-2 text-sm text-white hover:bg-primary-700"
+              class="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
               @click="open = false"
             >
               I understand

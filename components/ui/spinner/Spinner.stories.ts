@@ -45,7 +45,7 @@ export const OnDark: Story = {
   render: () => ({
     components: { Spinner },
     template: `
-      <div class="flex items-center justify-center rounded-lg bg-neutral-800 p-8">
+      <div class="flex items-center justify-center rounded-lg bg-gray-800 p-8">
         <Spinner variant="white" size="lg" />
       </div>
     `,
@@ -56,7 +56,7 @@ export const InButton: Story = {
   render: () => ({
     components: { Spinner },
     template: `
-      <button class="inline-flex items-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm text-white" disabled>
+      <button class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm text-white" disabled>
         <Spinner size="xs" variant="white" label="" />
         Processing...
       </button>

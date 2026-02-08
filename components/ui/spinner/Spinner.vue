@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 type SpinnerVariant = 'primary' | 'white' | 'neutral'
 
@@ -27,9 +25,9 @@ const sizeClasses: Record<SpinnerSize, string> = {
 }
 
 const variantClasses: Record<SpinnerVariant, string> = {
-  primary: 'text-primary-600',
+  primary: 'text-blue-600',
   white: 'text-white',
-  neutral: 'text-neutral-400',
+  neutral: 'text-gray-400',
 }
 </script>
 
@@ -55,7 +53,7 @@ const variantClasses: Record<SpinnerVariant, string> = {
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
         />
       </svg>
-      <span v-if="label" class="text-sm text-neutral-600">{{ label }}</span>
+      <span v-if="label" class="text-sm text-gray-600">{{ label }}</span>
     </div>
   </div>
   <div v-else class="inline-flex items-center gap-2" role="status" :aria-label="label">
@@ -73,7 +71,7 @@ const variantClasses: Record<SpinnerVariant, string> = {
         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
       />
     </svg>
-    <span v-if="$slots.default" class="text-sm text-neutral-600">
+    <span v-if="$slots.default" class="text-sm text-gray-600">
       <slot />
     </span>
   </div>

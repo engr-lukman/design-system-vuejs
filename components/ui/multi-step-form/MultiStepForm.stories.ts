@@ -34,26 +34,26 @@ export const Default: Story = {
     template: `
       <MultiStepForm v-bind="args" v-model="step">
         <template #step-0>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <h3 class="text-lg font-semibold text-neutral-900 mb-4">Account Information</h3>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Account Information</h3>
             <div class="flex flex-col gap-4">
-              <input class="w-full rounded-lg border border-neutral-300 px-4 py-2" placeholder="Email address" />
-              <input class="w-full rounded-lg border border-neutral-300 px-4 py-2" type="password" placeholder="Password" />
+              <input class="w-full rounded-lg border border-gray-300 px-4 py-2" placeholder="Email address" />
+              <input class="w-full rounded-lg border border-gray-300 px-4 py-2" type="password" placeholder="Password" />
             </div>
           </div>
         </template>
         <template #step-1>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <h3 class="text-lg font-semibold text-neutral-900 mb-4">Profile Details</h3>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Profile Details</h3>
             <div class="flex flex-col gap-4">
-              <input class="w-full rounded-lg border border-neutral-300 px-4 py-2" placeholder="Full name" />
-              <input class="w-full rounded-lg border border-neutral-300 px-4 py-2" placeholder="Phone number" />
+              <input class="w-full rounded-lg border border-gray-300 px-4 py-2" placeholder="Full name" />
+              <input class="w-full rounded-lg border border-gray-300 px-4 py-2" placeholder="Phone number" />
             </div>
           </div>
         </template>
         <template #step-2>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <h3 class="text-lg font-semibold text-neutral-900 mb-4">Settings</h3>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Settings</h3>
             <label class="inline-flex items-center gap-2">
               <input type="checkbox" class="rounded" />
               <span>Receive email notifications</span>
@@ -61,9 +61,9 @@ export const Default: Story = {
           </div>
         </template>
         <template #step-3>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <h3 class="text-lg font-semibold text-neutral-900 mb-4">Review</h3>
-            <p class="text-neutral-600">Please review your information before submitting.</p>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Review</h3>
+            <p class="text-gray-600">Please review your information before submitting.</p>
           </div>
         </template>
       </MultiStepForm>
@@ -85,23 +85,23 @@ export const Linear: Story = {
     template: `
       <MultiStepForm v-bind="args" v-model="step">
         <template #step-0>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <p class="text-neutral-600">Step 1: You must go in order (linear mode).</p>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600">Step 1: You must go in order (linear mode).</p>
           </div>
         </template>
         <template #step-1>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <p class="text-neutral-600">Step 2: Continue forward.</p>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600">Step 2: Continue forward.</p>
           </div>
         </template>
         <template #step-2>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <p class="text-neutral-600">Step 3: Almost there.</p>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600">Step 3: Almost there.</p>
           </div>
         </template>
         <template #step-3>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <p class="text-neutral-600">Step 4: Complete!</p>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600">Step 4: Complete!</p>
           </div>
         </template>
       </MultiStepForm>
@@ -122,24 +122,24 @@ export const CustomActions: Story = {
     template: `
       <MultiStepForm v-bind="args" v-model="step">
         <template #step-0>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <p class="text-neutral-600">Custom action buttons below.</p>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600">Custom action buttons below.</p>
           </div>
         </template>
         <template #step-1>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <p class="text-neutral-600">Step 2 content.</p>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600">Step 2 content.</p>
           </div>
         </template>
         <template #step-2>
-          <div class="rounded-lg border border-neutral-200 p-6">
-            <p class="text-neutral-600">Final step.</p>
+          <div class="rounded-lg border border-gray-200 p-6">
+            <p class="text-gray-600">Final step.</p>
           </div>
         </template>
         <template #actions="{ isFirstStep, isLastStep, next, prev }">
           <button
             v-if="!isFirstStep"
-            class="rounded-lg border border-neutral-300 px-4 py-2 text-sm"
+            class="rounded-lg border border-gray-300 px-4 py-2 text-sm"
             @click="prev"
           >
             ← Back
@@ -148,13 +148,13 @@ export const CustomActions: Story = {
           <div class="flex gap-2">
             <button
               v-if="!isLastStep"
-              class="rounded-lg bg-neutral-200 px-4 py-2 text-sm"
+              class="rounded-lg bg-gray-200 px-4 py-2 text-sm"
               @click="next"
             >
               Skip
             </button>
             <button
-              class="rounded-lg bg-primary-600 px-4 py-2 text-sm text-white"
+              class="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white"
               @click="next"
             >
               {{ isLastStep ? 'Submit' : 'Continue →' }}

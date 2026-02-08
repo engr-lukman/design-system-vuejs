@@ -39,8 +39,14 @@ function onChange(value: string | number) {
 </script>
 
 <template>
-  <fieldset :disabled="disabled" class="flex flex-col gap-2">
-    <legend v-if="label" class="text-sm font-medium text-neutral-700 mb-1">
+  <fieldset
+    :disabled="disabled"
+    class="flex flex-col gap-2"
+  >
+    <legend
+      v-if="label"
+      class="text-sm font-medium text-gray-700 mb-1"
+    >
       {{ label }}
     </legend>
 
@@ -53,7 +59,7 @@ function onChange(value: string | number) {
         v-for="option in options"
         :key="option.value"
         :class="[
-          'inline-flex items-center gap-2 cursor-pointer text-sm text-neutral-700',
+          'inline-flex items-center gap-2 cursor-pointer text-sm text-gray-700',
           (option.disabled || disabled) && 'opacity-50 cursor-not-allowed',
         ]"
       >
@@ -63,14 +69,18 @@ function onChange(value: string | number) {
           :value="option.value"
           :checked="modelValue === option.value"
           :disabled="option.disabled || disabled"
-          class="h-4 w-4 border-neutral-300 text-primary-600 focus:ring-2 focus:ring-primary-500 focus:ring-offset-1"
+          class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
           @change="onChange(option.value)"
-        />
+        >
         <span>{{ option.label }}</span>
       </label>
     </div>
 
-    <p v-if="error" class="text-sm text-danger-600" role="alert">
+    <p
+      v-if="error"
+      class="text-sm text-red-600"
+      role="alert"
+    >
       {{ error }}
     </p>
   </fieldset>

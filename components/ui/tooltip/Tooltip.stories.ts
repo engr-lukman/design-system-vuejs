@@ -25,7 +25,7 @@ export const Default: Story = {
     template: `
       <div class="flex items-center justify-center p-20">
         <Tooltip v-bind="args">
-          <button class="rounded-lg bg-primary-600 px-4 py-2 text-sm text-white">Hover me</button>
+          <button class="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white">Hover me</button>
         </Tooltip>
       </div>
     `,
@@ -38,16 +38,16 @@ export const Positions: Story = {
     template: `
       <div class="flex items-center justify-center gap-8 p-20">
         <Tooltip content="Top tooltip" position="top">
-          <button class="rounded-lg border border-neutral-300 px-4 py-2 text-sm">Top</button>
+          <button class="rounded-lg border border-gray-300 px-4 py-2 text-sm">Top</button>
         </Tooltip>
         <Tooltip content="Bottom tooltip" position="bottom">
-          <button class="rounded-lg border border-neutral-300 px-4 py-2 text-sm">Bottom</button>
+          <button class="rounded-lg border border-gray-300 px-4 py-2 text-sm">Bottom</button>
         </Tooltip>
         <Tooltip content="Left tooltip" position="left">
-          <button class="rounded-lg border border-neutral-300 px-4 py-2 text-sm">Left</button>
+          <button class="rounded-lg border border-gray-300 px-4 py-2 text-sm">Left</button>
         </Tooltip>
         <Tooltip content="Right tooltip" position="right">
-          <button class="rounded-lg border border-neutral-300 px-4 py-2 text-sm">Right</button>
+          <button class="rounded-lg border border-gray-300 px-4 py-2 text-sm">Right</button>
         </Tooltip>
       </div>
     `,

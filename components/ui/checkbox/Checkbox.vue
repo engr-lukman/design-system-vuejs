@@ -34,7 +34,7 @@ function onChange(event: Event) {
     <label
       :for="checkboxId"
       :class="[
-        'inline-flex items-center gap-2 cursor-pointer text-sm text-neutral-700',
+        'inline-flex items-center gap-2 cursor-pointer text-sm text-gray-700',
         disabled && 'opacity-50 cursor-not-allowed',
       ]"
     >
@@ -44,15 +44,19 @@ function onChange(event: Event) {
         :checked="modelValue"
         :disabled="disabled"
         :indeterminate="indeterminate"
-        class="h-4 w-4 rounded border-neutral-300 text-primary-600 focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 disabled:cursor-not-allowed"
+        class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 disabled:cursor-not-allowed"
         :aria-invalid="!!error"
         @change="onChange"
-      />
+      >
       <span v-if="label">{{ label }}</span>
       <slot v-else />
     </label>
 
-    <p v-if="error" class="ml-6 text-sm text-danger-600" role="alert">
+    <p
+      v-if="error"
+      class="ml-6 text-sm text-red-600"
+      role="alert"
+    >
       {{ error }}
     </p>
   </div>

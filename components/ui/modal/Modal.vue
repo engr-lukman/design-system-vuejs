@@ -90,7 +90,7 @@ onUnmounted(() => {
       >
         <!-- Overlay -->
         <div
-          class="fixed inset-0 bg-neutral-950/50 transition-opacity"
+          class="fixed inset-0 bg-gray-950/50 transition-opacity"
           aria-hidden="true"
           @click="onOverlayClick"
         />
@@ -114,15 +114,18 @@ onUnmounted(() => {
             <!-- Header -->
             <div
               v-if="title || closable"
-              class="flex items-center justify-between border-b border-neutral-200 px-6 py-4"
+              class="flex items-center justify-between border-b border-gray-200 px-6 py-4"
             >
-              <h2 v-if="title" class="text-lg font-semibold text-neutral-900">
+              <h2
+                v-if="title"
+                class="text-lg font-semibold text-gray-900"
+              >
                 {{ title }}
               </h2>
               <button
                 v-if="closable"
                 type="button"
-                class="ml-auto rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                class="ml-auto rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 aria-label="Close"
                 @click="close"
               >
@@ -148,7 +151,7 @@ onUnmounted(() => {
             <!-- Footer -->
             <div
               v-if="$slots.footer"
-              class="flex items-center justify-end gap-3 border-t border-neutral-200 px-6 py-4"
+              class="flex items-center justify-end gap-3 border-t border-gray-200 px-6 py-4"
             >
               <slot name="footer" />
             </div>

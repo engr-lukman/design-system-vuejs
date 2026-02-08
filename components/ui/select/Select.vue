@@ -49,11 +49,11 @@ const selectClasses = computed(() => [
   'block w-full appearance-none rounded-lg border bg-white transition-colors duration-150',
   'pr-10 bg-no-repeat bg-right',
   'focus:outline-none focus:ring-2 focus:ring-offset-0',
-  'disabled:bg-neutral-100 disabled:cursor-not-allowed',
+  'disabled:bg-gray-100 disabled:cursor-not-allowed',
   sizeClasses[props.size],
   props.error
-    ? 'border-danger-500 focus:border-danger-500 focus:ring-danger-500/20'
-    : 'border-neutral-300 focus:border-primary-500 focus:ring-primary-500/20',
+    ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+    : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500/20',
 ])
 
 function onChange(event: Event) {
@@ -66,9 +66,17 @@ function onChange(event: Event) {
 
 <template>
   <div class="flex flex-col gap-1.5">
-    <label v-if="label" :for="selectId" class="text-sm font-medium text-neutral-700">
+    <label
+      v-if="label"
+      :for="selectId"
+      class="text-sm font-medium text-gray-700"
+    >
       {{ label }}
-      <span v-if="required" class="text-danger-500" aria-hidden="true">*</span>
+      <span
+        v-if="required"
+        class="text-red-500"
+        aria-hidden="true"
+      >*</span>
     </label>
 
     <div class="relative">
@@ -82,7 +90,12 @@ function onChange(event: Event) {
         :aria-describedby="error ? `${selectId}-error` : hint ? `${selectId}-hint` : undefined"
         @change="onChange"
       >
-        <option value="" disabled>{{ placeholder }}</option>
+        <option
+          value=""
+          disabled
+        >
+          {{ placeholder }}
+        </option>
         <option
           v-for="option in options"
           :key="option.value"
@@ -95,7 +108,7 @@ function onChange(event: Event) {
 
       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
         <svg
-          class="h-4 w-4 text-neutral-500"
+          class="h-4 w-4 text-gray-500"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -110,10 +123,19 @@ function onChange(event: Event) {
       </div>
     </div>
 
-    <p v-if="error" :id="`${selectId}-error`" class="text-sm text-danger-600" role="alert">
+    <p
+      v-if="error"
+      :id="`${selectId}-error`"
+      class="text-sm text-red-600"
+      role="alert"
+    >
       {{ error }}
     </p>
-    <p v-else-if="hint" :id="`${selectId}-hint`" class="text-sm text-neutral-500">
+    <p
+      v-else-if="hint"
+      :id="`${selectId}-hint`"
+      class="text-sm text-gray-500"
+    >
       {{ hint }}
     </p>
   </div>

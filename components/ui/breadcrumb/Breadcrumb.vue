@@ -18,9 +18,17 @@ defineEmits<{
 <template>
   <nav aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-1.5 text-sm">
-      <li v-for="(item, index) in items" :key="index" class="inline-flex items-center gap-1.5">
+      <li
+        v-for="(item, index) in items"
+        :key="index"
+        class="inline-flex items-center gap-1.5"
+      >
         <!-- Separator -->
-        <span v-if="index > 0" class="text-neutral-400" aria-hidden="true">
+        <span
+          v-if="index > 0"
+          class="text-gray-400"
+          aria-hidden="true"
+        >
           <svg
             v-if="separator === 'chevron'"
             class="h-4 w-4"
@@ -41,14 +49,14 @@ defineEmits<{
         <a
           v-if="item.href && !item.active"
           :href="item.href"
-          class="text-neutral-500 transition-colors hover:text-neutral-700"
+          class="text-gray-500 transition-colors hover:text-gray-700"
           @click.prevent="$emit('navigate', item, index)"
         >
           {{ item.label }}
         </a>
         <span
           v-else
-          :class="item.active ? 'font-medium text-neutral-900' : 'text-neutral-500'"
+          :class="item.active ? 'font-medium text-gray-900' : 'text-gray-500'"
           :aria-current="item.active ? 'page' : undefined"
         >
           {{ item.label }}

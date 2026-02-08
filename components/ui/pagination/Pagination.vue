@@ -73,7 +73,7 @@ function goTo(page: number) {
     class="flex flex-col items-center gap-3 sm:flex-row sm:justify-between"
     aria-label="Pagination"
   >
-    <p class="text-sm text-neutral-600">
+    <p class="text-sm text-gray-600">
       Showing <span class="font-medium">{{ startItem }}</span> to
       <span class="font-medium">{{ endItem }}</span> of
       <span class="font-medium">{{ totalItems }}</span> results
@@ -84,7 +84,7 @@ function goTo(page: number) {
       <button
         type="button"
         :disabled="isFirstPage"
-        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 text-neutral-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-50"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-gray-300 text-gray-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
         aria-label="Previous page"
         @click="goTo(currentPage - 1)"
       >
@@ -103,10 +103,13 @@ function goTo(page: number) {
       </button>
 
       <!-- Pages -->
-      <template v-for="page in visiblePages" :key="page">
+      <template
+        v-for="page in visiblePages"
+        :key="page"
+      >
         <span
           v-if="page === 'ellipsis-start' || page === 'ellipsis-end'"
-          class="inline-flex h-9 w-9 items-center justify-center text-sm text-neutral-400"
+          class="inline-flex h-9 w-9 items-center justify-center text-sm text-gray-400"
         >
           &hellip;
         </span>
@@ -116,8 +119,8 @@ function goTo(page: number) {
           :class="[
             'inline-flex h-9 w-9 items-center justify-center rounded-lg text-sm font-medium transition-colors',
             page === currentPage
-              ? 'bg-primary-600 text-white'
-              : 'border border-neutral-300 text-neutral-700 hover:bg-neutral-50',
+              ? 'bg-blue-600 text-white'
+              : 'border border-gray-300 text-gray-700 hover:bg-gray-50',
           ]"
           :aria-current="page === currentPage ? 'page' : undefined"
           @click="goTo(page as number)"
@@ -130,7 +133,7 @@ function goTo(page: number) {
       <button
         type="button"
         :disabled="isLastPage"
-        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 text-neutral-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-50"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-gray-300 text-gray-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
         aria-label="Next page"
         @click="goTo(currentPage + 1)"
       >
