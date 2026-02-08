@@ -1,106 +1,135 @@
-# GitHub Copilot Instructions — Design System
+# GitHub Copilot Instructions — Vue Design System
 
-You are a senior frontend engineer contributing to this repository.
+You are contributing to a reusable Vue 3 design system.
 
-## Tech Stack
+The design system is implemented using Vue 3 Composition API but must remain
+framework-agnostic and usable in any Vue-based application
+(e.g. Vite, Nuxt, Quasar, Vue CLI, etc).
 
-- Vue 3 (Composition API, <script setup>)
+---
+
+## Package Manager
+
+- This project uses **pnpm** only
+- Never suggest npm or yarn commands
+- Always use pnpm for install, dev, build, and storybook commands
+
+---
+
+## Core Technology
+
+- Vue 3
+- Composition API
+- <script setup>
 - TypeScript
-- Nuxt 3 compatibility
 - Tailwind CSS
 - Storybook for Vue 3
 
-## Project Goal
+---
 
-Build a scalable, accessible design system for a web application.
+## Design System Principles
 
-Components must be reusable, consistent, and documented in Storybook.
+- Components must be **framework-agnostic**
+- Do NOT use framework-specific features (Nuxt, Quasar, Vuetify, etc)
+- No reliance on runtime plugins, auto-imports, or global injections
+- Components should work in any Vue 3 environment
 
 ---
 
-## General Rules
-
-- Prefer clarity over cleverness
-- Avoid over-engineering
-- Write production-ready code
-- Assume this code will be used by a team
-- Follow atomic design principles
-
----
-
-## Component Rules
+## Component Architecture
 
 - Components live in `/components/ui/<component-name>/`
 - Each component folder contains:
   - `<ComponentName>.vue`
   - `<ComponentName>.stories.ts`
-- Use Vue 3 `<script setup>` with TypeScript
-- Use Tailwind CSS utility classes only (no inline styles)
+- Use Atomic Design concepts where appropriate
+- Components must be reusable and composable
+
+---
+
+## Component Implementation Rules
+
+- Use `<script setup lang="ts">`
+- Use Vue Composition API only
+- No Options API
+- No external UI libraries
+- Use Tailwind utility classes only
 - Do not hardcode colors, spacing, or typography
 - Use Tailwind design tokens defined in `/tokens`
-- Components must be framework-agnostic in design
+- Avoid global CSS dependencies
+
+---
+
+## Props & Events
+
+- Define explicit, typed props
+- Provide sensible defaults
+- Use `modelValue` and `update:modelValue` for v-model compatibility
+- Emit only UI-related events
+- Do not include business logic or validation
 
 ---
 
 ## Accessibility
 
 - Use semantic HTML
-- Support keyboard navigation
-- Use ARIA attributes where appropriate
-- Associate labels correctly with inputs
-- Ensure focus-visible styles exist
+- Ensure keyboard navigation works
+- Use ARIA attributes when required
+- Ensure focus-visible styles are present
+- Associate labels correctly with form controls
 
 ---
 
-## State & Props
-
-- Define clear props with TypeScript types
-- Provide sensible default values
-- Use `modelValue` + `update:modelValue` for form components
-- Do not include business logic or validation inside UI components
-
----
-
-## Storybook Rules
+## Storybook
 
 - Every component must have a Storybook story
 - Use one story file per component
-- Include:
+- Stories must demonstrate:
   - Default state
-  - Variants (size, type, state)
-  - Disabled and error states (where applicable)
-- Use `args` and `argTypes` for interactive controls
-- Use clean, readable story titles
+  - Variants
+  - Disabled and error states (if applicable)
+- Use args and argTypes for controls
+- Keep stories minimal and readable
 
 ---
 
-## Tailwind Design Tokens
+## Design Tokens
 
-- Colors, spacing, and typography are defined in `/tokens`
-- Use Tailwind theme extensions only
-- Never introduce new hardcoded values in components
+- All design tokens live in `/tokens`
+- Tokens include:
+  - colors
+  - spacing
+  - typography
+- Tailwind consumes tokens via theme extension
+- Components must reference tokens through Tailwind utilities only
 
 ---
 
 ## Naming Conventions
 
-- Components: PascalCase (Button, TextInput)
+- Components: PascalCase
 - Props: camelCase
-- Emits: kebab-case events
-- CSS: Tailwind utilities only
+- Emits: kebab-case
+- Folders: kebab-case
 
 ---
 
-## Storybook Styling
+## Code Quality
 
-- Storybook theme matches Tailwind tokens
-- Use system fonts defined in typography tokens
+- Prefer clarity over cleverness
+- Avoid premature abstraction
+- Keep files focused and readable
+- Add comments only when necessary
 
 ---
 
-## When Generating Code
+## Commands
 
-- Keep code readable and consistent
-- Add brief comments only when helpful
-- Do not add unnecessary abstractions
-- Do not include explanations outside code unless asked
+When suggesting commands, always use pnpm:
+
+- `pnpm install`
+- `pnpm dev`
+- `pnpm build`
+- `pnpm storybook`
+
+Never suggest npm or yarn commands.
