@@ -46,17 +46,32 @@ const variantClasses: Record<SpinnerVariant, string> = {
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        />
         <path
           class="opacity-75"
           fill="currentColor"
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
         />
       </svg>
-      <span v-if="label" class="text-sm text-gray-600">{{ label }}</span>
+      <span
+        v-if="label"
+        class="text-sm text-gray-600"
+      >{{ label }}</span>
     </div>
   </div>
-  <div v-else class="inline-flex items-center gap-2" role="status" :aria-label="label">
+  <div
+    v-else
+    class="inline-flex items-center gap-2"
+    role="status"
+    :aria-label="label"
+  >
     <svg
       :class="['animate-spin', sizeClasses[size], variantClasses[variant]]"
       xmlns="http://www.w3.org/2000/svg"
@@ -64,14 +79,24 @@ const variantClasses: Record<SpinnerVariant, string> = {
       viewBox="0 0 24 24"
       aria-hidden="true"
     >
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+      <circle
+        class="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        stroke-width="4"
+      />
       <path
         class="opacity-75"
         fill="currentColor"
         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
       />
     </svg>
-    <span v-if="$slots.default" class="text-sm text-gray-600">
+    <span
+      v-if="$slots.default"
+      class="text-sm text-gray-600"
+    >
       <slot />
     </span>
   </div>
