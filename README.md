@@ -2,6 +2,8 @@
 
 A reusable, framework-agnostic Vue 3 component library built with TypeScript, Tailwind CSS v4, and Storybook.
 
+> **Live Demo:** [https://engr-lukman.github.io/design-system-vuejs](https://engr-lukman.github.io/design-system-vuejs)
+
 ## Tech Stack
 
 - **Vue 3** — Composition API with `<script setup>`
@@ -56,8 +58,8 @@ A reusable, framework-agnostic Vue 3 component library built with TypeScript, Ta
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) >= 18
-- [pnpm](https://pnpm.io/) >= 8
+- [Node.js](https://nodejs.org/) >= 20
+- [pnpm](https://pnpm.io/) >= 9
 
 ### Installation
 
