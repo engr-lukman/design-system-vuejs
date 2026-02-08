@@ -1,0 +1,62 @@
+{
+  "name": "design-system-vuejs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/design-system.cjs",
+  "module": "dist/design-system.mjs",
+  "types": "dist/types/components/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/design-system.mjs",
+      "require": "./dist/design-system.cjs"
+    },
+    "./styles": "./dist/design-system-vuejs.css"
+  },
+  "files": [
+    "dist",
+    "components",
+    "tokens",
+    "styles"
+  ],
+  "author": {
+    "name": "Mohammad Lukman Hussain",
+    "email": "engr.lukman@gmail.com",
+    "url": "https://engr-lukman.github.io/"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "lint": "eslint . --fix",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@storybook/addon-essentials": "^8.5.3",
+    "@storybook/addon-interactions": "^8.5.3",
+    "@storybook/addon-links": "^8.5.3",
+    "@storybook/blocks": "^8.5.3",
+    "@storybook/vue3": "^8.5.3",
+    "@storybook/vue3-vite": "^8.5.3",
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/node": "^25.2.2",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "eslint": "^9.17.0",
+    "eslint-plugin-vue": "^9.32.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "storybook": "^8.5.3",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vue-tsc": "^2.2.2"
+  }
+}
