@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
-type HoverCardSide = 'top' | 'bottom'
-type HoverCardAlign = 'start' | 'center' | 'end'
+import type { HoverCardAlign, HoverCardSide } from './types'
 
 interface Props {
   side?: HoverCardSide

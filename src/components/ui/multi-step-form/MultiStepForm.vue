@@ -1,109 +1,103 @@
 <script setup lang="ts">
-import { computed, provide, readonly } from 'vue'
-import { MULTI_STEP_FORM_KEY, type StepDefinition } from './types'
+import { computed } from 'vue'
+import type { MultiStepFormStep, StepStatus } from './types'
 
 interface Props {
-  steps: StepDefinition[]
+  steps: MultiStepFormStep[]
   modelValue?: number
+  showNavigation?: boolean
+  nextLabel?: string
+  prevLabel?: string
+  finishLabel?: string
   linear?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
-  linear: false,
+  showNavigation: true,
+  nextLabel: 'Next',
+  prevLabel: 'Back',
+  finishLabel: 'Finish',
+  linear: true,
 })
 
 const emit = defineEmits<{
   (e: 'update:modelValue', step: number): void
-  (e: 'step-change', step: number, direction: 'next' | 'prev' | 'jump'): void
-  (e: 'complete'): void
+  (e: 'next', step: number): void
+  (e: 'prev', step: number): void
+  (e: 'finish'): void
+  (e: 'step-click', step: number): void
 }>()
 
-const currentStep = computed(() => props.modelValue)
 const totalSteps = computed(() => props.steps.length)
-const isFirstStep = computed(() => currentStep.value === 0)
-const isLastStep = computed(() => currentStep.value === totalSteps.value - 1)
+const isFirstStep = computed(() => props.modelValue === 0)
+const isLastStep = computed(() => props.modelValue === totalSteps.value - 1)
 
-function goTo(step: number) {
-  if (step < 0 || step >= totalSteps.value) return
-  if (props.linear && step > currentStep.value + 1) return
+function getStepStatus(index: number): StepStatus {
+  if (index < props.modelValue) return 'completed'
+  if (index === props.modelValue) return 'current'
+  return 'upcoming'
+}
 
-  const direction = step > currentStep.value ? 'next' : step < currentStep.value ? 'prev' : 'jump'
-  emit('update:modelValue', step)
-  emit('step-change', step, direction)
+function goToStep(index: number) {
+  if (props.linear && index > props.modelValue) return
+  emit('update:modelValue', index)
+  emit('step-click', index)
 }
 
 function next() {
   if (!isLastStep.value) {
-    goTo(currentStep.value + 1)
+    const nextStep = props.modelValue + 1
+    emit('update:modelValue', nextStep)
+    emit('next', nextStep)
   } else {
-    emit('complete')
+    emit('finish')
   }
 }
 
 function prev() {
   if (!isFirstStep.value) {
-    goTo(currentStep.value - 1)
+    const prevStep = props.modelValue - 1
+    emit('update:modelValue', prevStep)
+    emit('prev', prevStep)
   }
 }
-
-provide(MULTI_STEP_FORM_KEY, {
-  currentStep: readonly(currentStep),
-  totalSteps: readonly(totalSteps),
-  isFirstStep: readonly(isFirstStep),
-  isLastStep: readonly(isLastStep),
-  next,
-  prev,
-  goTo,
-})
-
-defineExpose({ next, prev, goTo })
 </script>
 
 <template>
-  <div class="flex flex-col gap-8">
-    <!-- Step Indicator -->
+  <div class="w-full">
+    <!-- Step indicator -->
     <nav aria-label="Progress">
       <ol class="flex items-center">
         <li
           v-for="(step, index) in steps"
           :key="index"
-          :class="['relative flex items-center', index < steps.length - 1 ? 'flex-1' : '']"
+          :class="['flex items-center', index < totalSteps - 1 ? 'flex-1' : '']"
         >
-          <!-- Connector line -->
-          <div
-            v-if="index > 0"
-            :class="[
-              'absolute top-4 right-1/2 -left-full h-0.5 transition-colors duration-200',
-              index <= currentStep ? 'bg-gray-900' : 'bg-gray-200',
-            ]"
-            aria-hidden="true"
-          />
-
           <button
             type="button"
             :class="[
-              'group relative z-10 flex flex-col items-center gap-2',
-              !linear || index <= currentStep + 1 ? 'cursor-pointer' : 'cursor-not-allowed',
+              'group flex items-center',
+              !linear || index <= modelValue ? 'cursor-pointer' : 'cursor-not-allowed',
             ]"
-            :disabled="linear && index > currentStep + 1"
-            :aria-current="index === currentStep ? 'step' : undefined"
-            @click="goTo(index)"
+            :disabled="linear && index > modelValue"
+            :aria-current="getStepStatus(index) === 'current' ? 'step' : undefined"
+            @click="goToStep(index)"
           >
-            <!-- Circle -->
+            <!-- Step circle -->
             <span
               :class="[
-                'flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-200',
-                index < currentStep
+                'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-medium transition-colors duration-150',
+                getStepStatus(index) === 'completed'
                   ? 'bg-gray-900 text-white'
-                  : index === currentStep
+                  : getStepStatus(index) === 'current'
                     ? 'border-2 border-gray-900 bg-white text-gray-900'
                     : 'border-2 border-gray-300 bg-white text-gray-500',
               ]"
             >
-              <!-- Check icon for completed steps -->
+              <!-- Checkmark for completed -->
               <svg
-                v-if="index < currentStep"
+                v-if="getStepStatus(index) === 'completed'"
                 class="h-4 w-4"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -119,83 +113,124 @@ defineExpose({ next, prev, goTo })
               <span v-else>{{ index + 1 }}</span>
             </span>
 
-            <!-- Label -->
-            <span class="flex flex-col items-center">
+            <!-- Step label -->
+            <span class="ml-3 hidden sm:block">
               <span
                 :class="[
-                  'text-xs font-medium whitespace-nowrap',
-                  index <= currentStep ? 'text-gray-900' : 'text-gray-500',
+                  'text-sm font-medium',
+                  getStepStatus(index) === 'completed'
+                    ? 'text-gray-900'
+                    : getStepStatus(index) === 'current'
+                      ? 'text-gray-900'
+                      : 'text-gray-500',
                 ]"
               >
-                {{ step.title }}
+                {{ step.label }}
               </span>
               <span
                 v-if="step.description"
-                class="hidden text-xs text-gray-400 sm:block"
+                :class="[
+                  'block text-xs',
+                  getStepStatus(index) === 'upcoming' ? 'text-gray-400' : 'text-gray-500',
+                ]"
               >
                 {{ step.description }}
               </span>
             </span>
           </button>
+
+          <!-- Connector line -->
+          <div
+            v-if="index < totalSteps - 1"
+            :class="[
+              'mx-4 h-0.5 flex-1 transition-colors duration-150',
+              index < modelValue ? 'bg-gray-900' : 'bg-gray-200',
+            ]"
+            aria-hidden="true"
+          />
         </li>
       </ol>
     </nav>
 
-    <!-- Step Content -->
-    <div class="min-h-0">
+    <!-- Step content -->
+    <div class="mt-8">
       <template
-        v-for="(step, index) in steps"
+        v-for="(_, index) in steps"
         :key="index"
       >
         <div
-          v-show="index === currentStep"
+          v-show="index === modelValue"
           role="tabpanel"
+          :aria-label="steps[index]?.label"
         >
           <slot
-            :name="`step-${index}`"
-            :step="step"
-            :index="index"
+            :name="`step-${index + 1}`"
+            :step="index"
+            :status="getStepStatus(index)"
           />
         </div>
       </template>
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation buttons -->
     <div
-      v-if="$slots.actions"
-      class="flex items-center justify-between border-t border-gray-200 pt-6"
-    >
-      <slot
-        name="actions"
-        :current-step="currentStep"
-        :is-first-step="isFirstStep"
-        :is-last-step="isLastStep"
-        :next="next"
-        :prev="prev"
-        :go-to="goTo"
-      />
-    </div>
-    <div
-      v-else
-      class="flex items-center justify-between border-t border-gray-200 pt-6"
+      v-if="showNavigation"
+      class="mt-8 flex items-center justify-between border-t border-gray-200 pt-4"
     >
       <button
         type="button"
-        :disabled="isFirstStep"
         :class="[
-          'rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors',
-          isFirstStep ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-50',
+          'inline-flex items-center rounded-md px-4 py-2 text-sm font-medium transition-colors duration-150',
+          'border border-gray-200 bg-white text-gray-900 hover:bg-gray-100',
+          'focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 focus-visible:outline-none',
+          'disabled:pointer-events-none disabled:opacity-50',
         ]"
+        :disabled="isFirstStep"
         @click="prev"
       >
-        Previous
+        <svg
+          class="mr-1.5 h-4 w-4"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        {{ prevLabel }}
       </button>
+
+      <span class="text-sm text-gray-500"> Step {{ modelValue + 1 }} of {{ totalSteps }} </span>
+
       <button
         type="button"
-        class="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-900/90"
+        :class="[
+          'inline-flex items-center rounded-md px-4 py-2 text-sm font-medium transition-colors duration-150',
+          'bg-gray-900 text-white hover:bg-gray-900/90',
+          'focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 focus-visible:outline-none',
+          'disabled:pointer-events-none disabled:opacity-50',
+        ]"
         @click="next"
       >
-        {{ isLastStep ? 'Complete' : 'Next' }}
+        {{ isLastStep ? finishLabel : nextLabel }}
+        <svg
+          v-if="!isLastStep"
+          class="ml-1.5 h-4 w-4"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd"
+          />
+        </svg>
       </button>
     </div>
   </div>

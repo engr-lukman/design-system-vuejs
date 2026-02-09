@@ -1,16 +1,5 @@
 <script setup lang="ts">
-type TypographyVariant =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'p'
-  | 'lead'
-  | 'large'
-  | 'small'
-  | 'muted'
-  | 'code'
-  | 'blockquote'
+import type { TypographyVariant } from './types'
 
 interface Props {
   variant?: TypographyVariant

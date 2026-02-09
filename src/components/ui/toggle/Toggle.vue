@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
-
-type ToggleSize = 'sm' | 'md' | 'lg'
+import type { ToggleSize } from './types'
 
 interface Props {
   modelValue?: boolean

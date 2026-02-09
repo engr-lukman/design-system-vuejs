@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onUnmounted, watch } from 'vue'
-
-type ModalSize = 'sm' | 'md' | 'lg' | 'xl'
+import type { ModalSize } from './types'
 
 interface Props {
   modelValue?: boolean

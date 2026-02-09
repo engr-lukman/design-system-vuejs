@@ -7,7 +7,12 @@ const meta: Meta<typeof MultiStepForm> = {
   component: MultiStepForm,
   tags: ['autodocs'],
   argTypes: {
+    modelValue: { control: { type: 'number', min: 0, max: 3 } },
+    showNavigation: { control: 'boolean' },
     linear: { control: 'boolean' },
+    nextLabel: { control: 'text' },
+    prevLabel: { control: 'text' },
+    finishLabel: { control: 'text' },
   },
 }
 
@@ -15,16 +20,12 @@ export default meta
 type Story = StoryObj<typeof MultiStepForm>
 
 const defaultSteps = [
-  { title: 'Account', description: 'Basic info' },
-  { title: 'Profile', description: 'Personal details' },
-  { title: 'Settings', description: 'Preferences' },
-  { title: 'Review', description: 'Confirm' },
+  { label: 'Account', description: 'Create your account' },
+  { label: 'Profile', description: 'Set up your profile' },
+  { label: 'Review', description: 'Review and confirm' },
 ]
 
 export const Default: Story = {
-  args: {
-    steps: defaultSteps,
-  },
   render: (args) => ({
     components: { MultiStepForm },
     setup() {
@@ -32,136 +33,142 @@ export const Default: Story = {
       return { args, step }
     },
     template: `
-      <MultiStepForm v-bind="args" v-model="step">
-        <template #step-0>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Account Information</h3>
-            <div class="flex flex-col gap-4">
-              <input class="w-full rounded-lg border border-gray-300 px-4 py-2" placeholder="Email address" />
-              <input class="w-full rounded-lg border border-gray-300 px-4 py-2" type="password" placeholder="Password" />
-            </div>
-          </div>
-        </template>
+      <MultiStepForm v-bind="args" v-model="step" :steps="args.steps">
         <template #step-1>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Profile Details</h3>
-            <div class="flex flex-col gap-4">
-              <input class="w-full rounded-lg border border-gray-300 px-4 py-2" placeholder="Full name" />
-              <input class="w-full rounded-lg border border-gray-300 px-4 py-2" placeholder="Phone number" />
+          <div class="rounded-md border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900">Account Information</h3>
+            <p class="mt-1 text-sm text-gray-500">Enter your email and password.</p>
+            <div class="mt-4 space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" placeholder="you@example.com" class="mt-1 block w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" placeholder="••••••••" class="mt-1 block w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950" />
+              </div>
             </div>
           </div>
         </template>
         <template #step-2>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Settings</h3>
-            <label class="inline-flex items-center gap-2">
-              <input type="checkbox" class="rounded" />
-              <span>Receive email notifications</span>
-            </label>
+          <div class="rounded-md border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900">Profile Details</h3>
+            <p class="mt-1 text-sm text-gray-500">Tell us about yourself.</p>
+            <div class="mt-4 space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Full Name</label>
+                <input type="text" placeholder="John Doe" class="mt-1 block w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Bio</label>
+                <textarea rows="3" placeholder="A short bio..." class="mt-1 block w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950"></textarea>
+              </div>
+            </div>
           </div>
         </template>
         <template #step-3>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Review</h3>
-            <p class="text-gray-600">Please review your information before submitting.</p>
+          <div class="rounded-md border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900">Review</h3>
+            <p class="mt-1 text-sm text-gray-500">Please review your information before submitting.</p>
+            <div class="mt-4 rounded-md bg-gray-50 p-4 text-sm text-gray-700">
+              All steps completed. Click <strong>Finish</strong> to submit.
+            </div>
           </div>
         </template>
       </MultiStepForm>
     `,
   }),
-}
-
-export const Linear: Story = {
   args: {
     steps: defaultSteps,
+    showNavigation: true,
     linear: true,
   },
+}
+
+export const MiddleStep: Story = {
+  render: Default.render,
+  args: {
+    steps: defaultSteps,
+    modelValue: 1,
+    showNavigation: true,
+    linear: false,
+  },
+}
+
+export const LastStep: Story = {
+  render: Default.render,
+  args: {
+    steps: defaultSteps,
+    modelValue: 2,
+    showNavigation: true,
+    linear: false,
+  },
+}
+
+export const NonLinear: Story = {
+  render: Default.render,
+  args: {
+    steps: defaultSteps,
+    showNavigation: true,
+    linear: false,
+  },
+}
+
+export const NoNavigation: Story = {
   render: (args) => ({
     components: { MultiStepForm },
     setup() {
-      const step = ref(0)
+      const step = ref(1)
       return { args, step }
     },
     template: `
-      <MultiStepForm v-bind="args" v-model="step">
-        <template #step-0>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600">Step 1: You must go in order (linear mode).</p>
-          </div>
-        </template>
+      <MultiStepForm v-bind="args" v-model="step" :steps="args.steps">
         <template #step-1>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600">Step 2: Continue forward.</p>
+          <div class="rounded-md border border-gray-200 p-6">
+            <p class="text-sm text-gray-700">Step 1 content — navigation is hidden.</p>
           </div>
         </template>
         <template #step-2>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600">Step 3: Almost there.</p>
+          <div class="rounded-md border border-gray-200 p-6">
+            <p class="text-sm text-gray-700">Step 2 content — navigation is hidden.</p>
           </div>
         </template>
         <template #step-3>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600">Step 4: Complete!</p>
+          <div class="rounded-md border border-gray-200 p-6">
+            <p class="text-sm text-gray-700">Step 3 content — navigation is hidden.</p>
           </div>
         </template>
       </MultiStepForm>
     `,
   }),
+  args: {
+    steps: defaultSteps,
+    showNavigation: false,
+  },
 }
 
-export const CustomActions: Story = {
+export const FourSteps: Story = {
+  render: Default.render,
   args: {
-    steps: [{ title: 'Step 1' }, { title: 'Step 2' }, { title: 'Step 3' }],
+    steps: [
+      { label: 'Cart', description: 'Review items' },
+      { label: 'Shipping', description: 'Delivery address' },
+      { label: 'Payment', description: 'Payment method' },
+      { label: 'Confirm', description: 'Place order' },
+    ],
+    showNavigation: true,
+    linear: true,
   },
-  render: (args) => ({
-    components: { MultiStepForm },
-    setup() {
-      const step = ref(0)
-      return { args, step }
-    },
-    template: `
-      <MultiStepForm v-bind="args" v-model="step">
-        <template #step-0>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600">Custom action buttons below.</p>
-          </div>
-        </template>
-        <template #step-1>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600">Step 2 content.</p>
-          </div>
-        </template>
-        <template #step-2>
-          <div class="rounded-lg border border-gray-200 p-6">
-            <p class="text-gray-600">Final step.</p>
-          </div>
-        </template>
-        <template #actions="{ isFirstStep, isLastStep, next, prev }">
-          <button
-            v-if="!isFirstStep"
-            class="rounded-lg border border-gray-300 px-4 py-2 text-sm"
-            @click="prev"
-          >
-            ← Back
-          </button>
-          <span v-else />
-          <div class="flex gap-2">
-            <button
-              v-if="!isLastStep"
-              class="rounded-lg bg-gray-200 px-4 py-2 text-sm"
-              @click="next"
-            >
-              Skip
-            </button>
-            <button
-              class="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white"
-              @click="next"
-            >
-              {{ isLastStep ? 'Submit' : 'Continue →' }}
-            </button>
-          </div>
-        </template>
-      </MultiStepForm>
-    `,
-  }),
+}
+
+export const CustomLabels: Story = {
+  render: Default.render,
+  args: {
+    steps: defaultSteps,
+    showNavigation: true,
+    linear: true,
+    nextLabel: 'Continue',
+    prevLabel: 'Go Back',
+    finishLabel: 'Submit',
+  },
 }

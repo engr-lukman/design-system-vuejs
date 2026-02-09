@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { onUnmounted, watch } from 'vue'
-
-type DrawerSide = 'left' | 'right' | 'top' | 'bottom'
-type DrawerSize = 'sm' | 'md' | 'lg' | 'xl' | 'full'
+import type { DrawerSide, DrawerSize } from './types'
 
 interface Props {
   modelValue?: boolean

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-
-type SkeletonVariant = 'text' | 'circular' | 'rectangular' | 'rounded'
+import type { SkeletonVariant } from './types'
 
 interface Props {
   variant?: SkeletonVariant

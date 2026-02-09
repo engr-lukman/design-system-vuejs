@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-
-type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-type AvatarShape = 'circle' | 'square'
+import type { AvatarShape, AvatarSize } from './types'
 
 interface Props {
   src?: string

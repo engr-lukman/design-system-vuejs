@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { DataTableColumn, SortDirection } from './types'
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
   searchable?: boolean
   searchPlaceholder?: string
   pageSize?: number
+  pageSizeOptions?: number[]
   striped?: boolean
 }
 
@@ -15,6 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   searchable: false,
   searchPlaceholder: 'Search...',
   pageSize: 10,
+  pageSizeOptions: () => [10, 25, 50, 100],
   striped: false,
 })
 
@@ -26,6 +28,19 @@ const searchQuery = ref('')
 const sortKey = ref<string | null>(null)
 const sortDir = ref<SortDirection>(null)
 const currentPage = ref(1)
+const perPage = ref(props.pageSize)
+
+watch(
+  () => props.pageSize,
+  (val) => {
+    perPage.value = val
+  }
+)
+
+function changePageSize(size: number) {
+  perPage.value = size
+  currentPage.value = 1
+}
 
 function toggleSort(col: DataTableColumn) {
   if (!col.sortable) return
@@ -67,10 +82,10 @@ const sortedData = computed(() => {
   })
 })
 
-const totalPages = computed(() => Math.max(1, Math.ceil(sortedData.value.length / props.pageSize)))
+const totalPages = computed(() => Math.max(1, Math.ceil(sortedData.value.length / perPage.value)))
 const paginatedData = computed(() => {
-  const start = (currentPage.value - 1) * props.pageSize
-  return sortedData.value.slice(start, start + props.pageSize)
+  const start = (currentPage.value - 1) * perPage.value
+  return sortedData.value.slice(start, start + perPage.value)
 })
 
 function goToPage(page: number) {
@@ -210,15 +225,35 @@ const alignClass: Record<string, string> = {
 
     <!-- Pagination -->
     <div
-      v-if="totalPages > 1"
+      v-if="sortedData.length > 0"
       class="flex items-center justify-between text-sm text-gray-600"
     >
-      <span>
-        Showing {{ (currentPage - 1) * pageSize + 1 }} to
-        {{ Math.min(currentPage * pageSize, sortedData.length) }}
-        of {{ sortedData.length }} results
-      </span>
-      <div class="flex items-center gap-1">
+      <div class="flex items-center gap-2">
+        <span>Rows per page</span>
+        <select
+          :value="perPage"
+          class="rounded-md border border-gray-300 bg-white px-2 py-1 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950"
+          @change="changePageSize(Number(($event.target as HTMLSelectElement).value))"
+        >
+          <option
+            v-for="size in pageSizeOptions"
+            :key="size"
+            :value="size"
+          >
+            {{ size }}
+          </option>
+        </select>
+        <span class="text-gray-500">
+          {{ (currentPage - 1) * perPage + 1 }}-{{
+            Math.min(currentPage * perPage, sortedData.length)
+          }}
+          of {{ sortedData.length }}
+        </span>
+      </div>
+      <div
+        v-if="totalPages > 1"
+        class="flex items-center gap-1"
+      >
         <button
           :disabled="currentPage === 1"
           class="rounded-md px-3 py-1.5 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"

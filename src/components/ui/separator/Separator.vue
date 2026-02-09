@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type SeparatorOrientation = 'horizontal' | 'vertical'
+import type { SeparatorOrientation } from './types'
 
 interface Props {
   orientation?: SeparatorOrientation

@@ -3,9 +3,18 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  plugins: [vue(), tailwindcss()],
+  plugins: [
+    vue(),
+    tailwindcss(),
+    dts({
+      tsconfigPath: './tsconfig.json',
+      outDir: 'dist/types',
+      insertTypesEntry: true,
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-
-type PopoverAlign = 'start' | 'center' | 'end'
-type PopoverSide = 'top' | 'bottom' | 'left' | 'right'
+import type { PopoverAlign, PopoverSide } from './types'
 
 interface Props {
   side?: PopoverSide

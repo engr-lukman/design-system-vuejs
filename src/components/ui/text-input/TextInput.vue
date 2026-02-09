@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
-
-type InputSize = 'sm' | 'md' | 'lg'
+import type { InputSize } from './types'
 
 interface Props {
   modelValue?: string

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onUnmounted, watch } from 'vue'
-
-type SheetSide = 'top' | 'bottom' | 'left' | 'right'
+import type { SheetSide } from './types'
 
 interface Props {
   modelValue?: boolean

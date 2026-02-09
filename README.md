@@ -17,23 +17,21 @@ A reusable, framework-agnostic Vue 3 component library styled after [shadcn/ui](
 
 ### Form
 
-| Component         | Description                                                                      |
-| ----------------- | -------------------------------------------------------------------------------- |
-| **Button**        | Primary, secondary, outline, ghost, danger, and link variants with loading state |
-| **ButtonGroup**   | Segmented button group with primary, secondary, and outline variants             |
-| **Checkbox**      | Checkbox with label, error, and indeterminate state                              |
-| **Combobox**      | Searchable select with filtering, keyboard navigation, and clear                 |
-| **DatePicker**    | Calendar-based date picker with min/max constraints                              |
-| **InputOtp**      | One-time password input with auto-focus, paste, and masking                      |
-| **Label**         | Styled label with required indicator and size variants                           |
-| **MultiStepForm** | Step wizard with linear/non-linear navigation                                    |
-| **RadioGroup**    | Radio button group with vertical/horizontal layout                               |
-| **Select**        | Dropdown select with placeholder, error, and hint                                |
-| **Slider**        | Range slider with progress fill, value display, and sizes                        |
-| **TextInput**     | Text input with label, hint, error, and size variants                            |
-| **Textarea**      | Multi-line input with character count and resize control                         |
-| **Toggle**        | Switch toggle with size variants                                                 |
-| **ToggleGroup**   | Multi-select toggle group with outline and solid variants                        |
+| Component       | Description                                                                      |
+| --------------- | -------------------------------------------------------------------------------- |
+| **Button**      | Primary, secondary, outline, ghost, danger, and link variants with loading state |
+| **Checkbox**    | Checkbox with label, error, and indeterminate state                              |
+| **Combobox**    | Searchable select with filtering, keyboard navigation, and clear                 |
+| **DatePicker**  | Native date, date-range, month, week, time, and datetime picker                  |
+| **InputOtp**    | One-time password input with auto-focus, paste, and masking                      |
+| **Label**       | Styled label with required indicator and size variants                           |
+| **RadioGroup**  | Radio button group with vertical/horizontal layout                               |
+| **Select**      | Dropdown select with placeholder, error, and hint                                |
+| **Slider**      | Range slider with progress fill, value display, and sizes                        |
+| **TextInput**   | Text input with label, hint, error, and size variants                            |
+| **Textarea**    | Multi-line input with character count and resize control                         |
+| **Toggle**      | Switch toggle with size variants                                                 |
+| **ToggleGroup** | Multi-select toggle group with outline and solid variants                        |
 
 ### Feedback
 
@@ -43,23 +41,23 @@ A reusable, framework-agnostic Vue 3 component library styled after [shadcn/ui](
 | **AlertDialog** | Confirmation dialog with default and danger variants   |
 | **Modal**       | Dialog with overlay, sizes, and keyboard/close control |
 | **Sonner**      | Toast notifications with composable API (useSonner)    |
-| **Spinner**     | Loading spinner with overlay mode                      |
+| **Spinner**     | Loading spinner with sizes, variants, and overlay mode |
 | **Tooltip**     | Positioned tooltip with delay and arrow                |
 
 ### Data Display
 
-| Component      | Description                                                 |
-| -------------- | ----------------------------------------------------------- |
-| **Avatar**     | Image, initials, or placeholder with status indicator       |
-| **Badge**      | Labeled badge with dot, removable, and outline variants     |
-| **Calendar**   | Standalone calendar with date selection and min/max         |
-| **Card**       | Container with header, body, and footer slots               |
-| **Carousel**   | Slide carousel with autoplay, arrows, and dots              |
-| **Chart**      | SVG-based bar, line, and donut chart                        |
-| **DataTable**  | Sortable, searchable, paginated data table                  |
-| **Skeleton**   | Loading placeholder with text, circular, and rectangular    |
-| **Table**      | Simple data table with striped, hoverable, and custom cells |
-| **Typography** | Semantic text styles (h1–h4, lead, code, blockquote)        |
+| Component      | Description                                                      |
+| -------------- | ---------------------------------------------------------------- |
+| **Avatar**     | Image, initials, or placeholder with status indicator            |
+| **Badge**      | Labeled badge with dot, removable, and outline variants          |
+| **Calendar**   | Standalone calendar with date selection and min/max              |
+| **Card**       | Container with header, body, and footer slots                    |
+| **Carousel**   | Slide carousel with autoplay, arrows, and dots                   |
+| **Chart**      | SVG-based bar, line, and donut chart                             |
+| **DataTable**  | Sortable, searchable, paginated data table with page size select |
+| **Skeleton**   | Loading placeholder with text, circular, and rectangular         |
+| **Table**      | Simple data table with striped, hoverable, and custom cells      |
+| **Typography** | Semantic text styles (h1–h4, lead, code, blockquote)             |
 
 ### Navigation
 
@@ -114,14 +112,6 @@ A reusable, framework-agnostic Vue 3 component library styled after [shadcn/ui](
 pnpm install
 ```
 
-### Development
-
-Start the Vite dev server:
-
-```bash
-pnpm dev
-```
-
 ### Storybook
 
 Browse all components interactively:
@@ -173,7 +163,6 @@ pnpm format
 │   │       ├── badge/
 │   │       ├── breadcrumb/
 │   │       ├── button/
-│   │       ├── button-group/
 │   │       ├── calendar/
 │   │       ├── card/
 │   │       ├── carousel/
@@ -216,7 +205,6 @@ pnpm format
 │   │       ├── toggle-group/
 │   │       ├── tooltip/
 │   │       └── typography/
-│   ├── dev/                      # Vite dev app entry
 │   ├── styles/
 │   │   └── main.css              # Tailwind CSS import
 │   └── env.d.ts

@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
-
-interface RadioOption {
-  label: string
-  value: string | number
-  disabled?: boolean
-}
+import type { RadioOption } from './types'
 
 interface Props {
   modelValue?: string | number

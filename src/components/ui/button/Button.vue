@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'link'
-type ButtonSize = 'sm' | 'md' | 'lg'
+import type { ButtonSize, ButtonVariant } from './types'
 
 interface Props {
   variant?: ButtonVariant

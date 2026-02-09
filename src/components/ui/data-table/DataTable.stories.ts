@@ -10,7 +10,7 @@ const columns: DataTableColumn[] = [
   { key: 'status', label: 'Status', align: 'center' },
 ]
 
-const data = Array.from({ length: 25 }, (_, i) => ({
+const data = Array.from({ length: 55 }, (_, i) => ({
   id: i + 1,
   name: ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'][i % 5] + ` ${i + 1}`,
   email: `user${i + 1}@example.com`,

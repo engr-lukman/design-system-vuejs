@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
-
-type TextareaSize = 'sm' | 'md' | 'lg'
-type TextareaResize = 'none' | 'vertical' | 'horizontal' | 'both'
+import type { TextareaResize, TextareaSize } from './types'
 
 interface Props {
   modelValue?: string

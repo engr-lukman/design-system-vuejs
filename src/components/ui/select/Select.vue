@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
-
-type SelectSize = 'sm' | 'md' | 'lg'
-
-interface SelectOption {
-  label: string
-  value: string | number
-  disabled?: boolean
-}
+import type { SelectOption, SelectSize } from './types'
 
 interface Props {
   modelValue?: string | number

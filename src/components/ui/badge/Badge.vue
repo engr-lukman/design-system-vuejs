@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-
-type BadgeVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'outline'
-type BadgeSize = 'sm' | 'md' | 'lg'
+import type { BadgeSize, BadgeVariant } from './types'
 
 interface Props {
   variant?: BadgeVariant

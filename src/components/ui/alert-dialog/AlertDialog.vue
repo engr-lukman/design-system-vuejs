@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onUnmounted, watch } from 'vue'
-
-type AlertDialogVariant = 'default' | 'danger'
+import type { AlertDialogVariant } from './types'
 
 interface Props {
   modelValue?: boolean

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type ScrollAreaSize = 'sm' | 'md' | 'lg'
+import type { ScrollAreaSize } from './types'
 
 interface Props {
   maxHeight?: string

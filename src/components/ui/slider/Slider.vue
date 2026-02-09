@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
-
-type SliderSize = 'sm' | 'md' | 'lg'
+import type { SliderSize } from './types'
 
 interface Props {
   modelValue?: number

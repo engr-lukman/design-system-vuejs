@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-
-type ProgressSize = 'sm' | 'md' | 'lg'
-type ProgressVariant = 'default' | 'success' | 'warning' | 'danger'
+import type { ProgressSize, ProgressVariant } from './types'
 
 interface Props {
   value?: number
@@ -33,7 +31,7 @@ const trackSizes: Record<ProgressSize, string> = {
 }
 
 const barColors: Record<ProgressVariant, string> = {
-  default: 'bg-blue-600',
+  default: 'bg-gray-900',
   success: 'bg-green-600',
   warning: 'bg-amber-500',
   danger: 'bg-red-600',
