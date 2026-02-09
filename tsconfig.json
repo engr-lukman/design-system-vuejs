@@ -14,15 +14,8 @@
     "types": ["node"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "components/**/*.ts",
-    "components/**/*.vue",
-    "dev/**/*.ts",
-    "dev/**/*.vue",
-    "env.d.ts",
-    "vite.config.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.vue", "vite.config.ts"]
 }

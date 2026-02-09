@@ -38,7 +38,7 @@ framework-agnostic and usable in any Vue-based application
 
 ## Component Architecture
 
-- Components live in `/components/ui/<component-name>/`
+- Components live in `/src/components/ui/<component-name>/`
 - Each component folder contains:
   - `<ComponentName>.vue`
   - `<ComponentName>.stories.ts`
@@ -57,7 +57,7 @@ framework-agnostic and usable in any Vue-based application
 - No Options API
 - No external UI libraries
 - Use Tailwind CSS v4 utility classes only
-- Use Tailwind's default color palette (e.g. `blue-*`, `gray-*`, `red-*`, `green-*`, `amber-*`)
+- Follow shadcn/ui color conventions: `gray-900` for primary actions, `gray-100`/`gray-200` for secondary/muted, `red-500` for destructive, `gray-950` for focus rings
 - Do not define custom design tokens or `@theme` overrides
 - Avoid global CSS dependencies
 
@@ -72,7 +72,7 @@ framework-agnostic and usable in any Vue-based application
 - Use `@import "tailwindcss"` instead of `@tailwind` directives
 - Use Tailwind's built-in default colors, spacing, and typography
 - No custom `@theme` blocks — rely entirely on Tailwind defaults
-- The global stylesheet is `/styles/main.css` (imports Tailwind only)
+- The global stylesheet is `/src/styles/main.css` (imports Tailwind only)
 
 ---
 

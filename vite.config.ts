@@ -8,12 +8,12 @@ export default defineConfig({
   plugins: [vue(), tailwindcss()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('.', import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   build: {
     lib: {
-      entry: resolve(fileURLToPath(new URL('.', import.meta.url)), 'components/index.ts'),
+      entry: resolve(fileURLToPath(new URL('.', import.meta.url)), 'src/components/index.ts'),
       name: 'DesignSystemVuejs',
       formats: ['es', 'cjs'],
       fileName: (format) => `design-system.${format === 'es' ? 'mjs' : 'cjs'}`,

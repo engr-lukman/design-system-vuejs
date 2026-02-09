@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/design-system.cjs",
   "module": "dist/design-system.mjs",
-  "types": "dist/types/components/index.d.ts",
+  "types": "dist/types/src/components/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/design-system.mjs",
@@ -15,8 +15,7 @@
   },
   "files": [
     "dist",
-    "components",
-    "styles"
+    "src"
   ],
   "author": {
     "name": "Mohammad Lukman Hussain",
