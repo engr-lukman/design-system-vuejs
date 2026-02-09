@@ -7,11 +7,22 @@ A reusable, framework-agnostic Vue 3 component library styled after [shadcn/ui](
 ## Tech Stack
 
 - **Vue 3** — Composition API with `<script setup>`
-- **TypeScript** — Strict type-checked components
+- **TypeScript** — Strict type-checked components with full declaration output
 - **Tailwind CSS v4** — Utility-first styling using default theme
 - **Storybook** — Interactive component documentation
-- **Vite** — Build tooling with library mode output
+- **Vite** — Build tooling with library mode output (ES + CJS)
 - **pnpm** — Package manager
+
+## Features
+
+- **50 components** across 7 categories (Form, Feedback, Data Display, Navigation, Layout, Overlay, Other)
+- **Full TypeScript support** — `.d.ts` declarations auto-generated via `vite-plugin-dts`
+- **40+ exported types** — all props types available for consumers
+- **Framework-agnostic** — works in any Vue 3 app (Vite, Nuxt, Quasar, Vue CLI)
+- **shadcn/ui color conventions** — `gray-900` primary, `gray-100`/`gray-200` secondary, `red-500` destructive
+- **Accessible** — semantic HTML, ARIA attributes, keyboard navigation, focus-visible rings
+- **Tree-shakable** — ES module output with `sideEffects` configured for CSS
+- **Zero runtime dependencies** — only `vue ^3.4.0` as peer dependency
 
 ## Components
 
@@ -143,6 +154,15 @@ pnpm format
 
 ## Project Structure
 
+Each component follows the pattern:
+
+```
+src/components/ui/<component-name>/
+├── <ComponentName>.vue        # Component implementation
+├── <ComponentName>.stories.ts # Storybook stories
+└── types.ts                   # Exported types (if applicable)
+```
+
 ```
 ├── .github/
 │   ├── copilot-instructions.md
@@ -217,8 +237,22 @@ pnpm format
 ## Usage (as a library)
 
 ```ts
-import { Button, TextInput, Modal } from 'design-system-vuejs'
+// Import components
+import { Button, TextInput, Modal, Spinner, MultiStepForm } from 'design-system-vuejs'
+
+// Import styles
 import 'design-system-vuejs/styles'
+
+// Import types (optional)
+import type { ButtonVariant, ModalSize, MultiStepFormStep } from 'design-system-vuejs'
+```
+
+### Peer Dependencies
+
+This library requires Vue 3.4+ as a peer dependency:
+
+```bash
+pnpm add vue
 ```
 
 ## Deployment
