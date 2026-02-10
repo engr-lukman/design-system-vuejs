@@ -15,7 +15,7 @@ A reusable, framework-agnostic Vue 3 component library styled after [shadcn/ui](
 
 ## Features
 
-- **50 components** across 7 categories (Form, Feedback, Data Display, Navigation, Layout, Overlay, Other)
+- **52 components** across 7 categories (Form, Feedback, Data Display, Navigation, Layout, Overlay, Other)
 - **Full TypeScript support** — `.d.ts` declarations auto-generated via `vite-plugin-dts`
 - **40+ exported types** — all props types available for consumers
 - **Framework-agnostic** — works in any Vue 3 app (Vite, Nuxt, Quasar, Vue CLI)
@@ -28,21 +28,23 @@ A reusable, framework-agnostic Vue 3 component library styled after [shadcn/ui](
 
 ### Form
 
-| Component       | Description                                                                      |
-| --------------- | -------------------------------------------------------------------------------- |
-| **Button**      | Primary, secondary, outline, ghost, danger, and link variants with loading state |
-| **Checkbox**    | Checkbox with label, error, and indeterminate state                              |
-| **Combobox**    | Searchable select with filtering, keyboard navigation, and clear                 |
-| **DatePicker**  | Native date, date-range, month, week, time, and datetime picker                  |
-| **InputOtp**    | One-time password input with auto-focus, paste, and masking                      |
-| **Label**       | Styled label with required indicator and size variants                           |
-| **RadioGroup**  | Radio button group with vertical/horizontal layout                               |
-| **Select**      | Dropdown select with placeholder, error, and hint                                |
-| **Slider**      | Range slider with progress fill, value display, and sizes                        |
-| **TextInput**   | Text input with label, hint, error, and size variants                            |
-| **Textarea**    | Multi-line input with character count and resize control                         |
-| **Toggle**      | Switch toggle with size variants                                                 |
-| **ToggleGroup** | Multi-select toggle group with outline and solid variants                        |
+| Component        | Description                                                                      |
+| ---------------- | -------------------------------------------------------------------------------- |
+| **Button**       | Primary, secondary, outline, ghost, danger, and link variants with loading state |
+| **Checkbox**     | Checkbox with label, error, and indeterminate state                              |
+| **Combobox**     | Searchable select with filtering, keyboard navigation, and clear                 |
+| **DatePicker**   | Native date, date-range, month, week, time, and datetime picker                  |
+| **InputOtp**     | One-time password input with auto-focus, paste, and masking                      |
+| **Label**        | Styled label with required indicator and size variants                           |
+| **LoginForm**    | Sign-in form with email, password, remember me, and customisable labels          |
+| **RadioGroup**   | Radio button group with vertical/horizontal layout                               |
+| **RegisterForm** | Sign-up form with name, email, password confirmation, and terms checkbox         |
+| **Select**       | Dropdown select with placeholder, error, and hint                                |
+| **Slider**       | Range slider with progress fill, value display, and sizes                        |
+| **TextInput**    | Text input with label, hint, error, and size variants                            |
+| **Textarea**     | Multi-line input with character count and resize control                         |
+| **Toggle**       | Switch toggle with size variants                                                 |
+| **ToggleGroup**  | Multi-select toggle group with outline and solid variants                        |
 
 ### Feedback
 
@@ -199,6 +201,7 @@ src/components/ui/<component-name>/
 │   │       ├── hover-card/
 │   │       ├── input-otp/
 │   │       ├── label/
+│   │       ├── login-form/
 │   │       ├── menubar/
 │   │       ├── modal/
 │   │       ├── multi-step-form/
@@ -207,6 +210,7 @@ src/components/ui/<component-name>/
 │   │       ├── popover/
 │   │       ├── progress/
 │   │       ├── radio-group/
+│   │       ├── register-form/
 │   │       ├── resizable/
 │   │       ├── scroll-area/
 │   │       ├── select/
@@ -238,13 +242,13 @@ src/components/ui/<component-name>/
 
 ```ts
 // Import components
-import { Button, TextInput, Modal, Spinner, MultiStepForm } from 'design-system-vuejs'
+import { Button, TextInput, Modal, LoginForm, RegisterForm } from 'design-system-vuejs'
 
 // Import styles
 import 'design-system-vuejs/styles'
 
 // Import types (optional)
-import type { ButtonVariant, ModalSize, MultiStepFormStep } from 'design-system-vuejs'
+import type { ButtonVariant, ModalSize, LoginFormData, RegisterFormData } from 'design-system-vuejs'
 ```
 
 ### Peer Dependencies
